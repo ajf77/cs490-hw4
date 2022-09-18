@@ -1,30 +1,29 @@
-import { db } from 'src/lib/db'
+export const schema = gql`
+  type Post {
+    id: Int!
+    title: String!
+    body: String!
+    createdAt: DateTime!
+  }
 
-export const posts = () => {
-  return db.post.findMany()
-}
+  type Query {
+    posts: [Post!]! @requireAuth
+    post(id: Int!): Post @requireAuth
+  }
 
-export const post = ({ id }) => {
-  return db.post.findUnique({
-    where: { id },
-  })
-}
+  input CreatePostInput {
+    title: String!
+    body: String!
+  }
 
-export const createPost = ({ input }) => {
-  return db.post.create({
-    data: input,
-  })
-}
+  input UpdatePostInput {
+    title: String
+    body: String
+  }
 
-export const updatePost = ({ id, input }) => {
-  return db.post.update({
-    data: input,
-    where: { id },
-  })
-}
-
-export const deletePost = ({ id }) => {
-  return db.post.delete({
-    where: { id },
-  })
-}
+  type Mutation {
+    createPost(input: CreatePostInput!): Post! @requireAuth
+    updatePost(id: Int!, input: UpdatePostInput!): Post! @requireAuth
+    deletePost(id: Int!): Post! @requireAuth
+  }
+`
