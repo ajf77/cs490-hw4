@@ -1,4 +1,4 @@
-import { MetaTags } from '@redwoodjs/web'
+mport { MetaTags, useMutation } from '@redwoodjs/web'
 import {
   FieldError,
   Form,
@@ -17,8 +17,10 @@ const CREATE_CONTACT = gql`
 `
 
 const ContactPage = () => {
+  const [create] = useMutation(CREATE_CONTACT)
+
   const onSubmit = (data) => {
-    console.log(data)
+    create({ variables: { input: data } })
   }
 
   return (
