@@ -23,6 +23,7 @@ export const Success = ({ articles }) => {
     <>
       {articles.map((article) => (
         <article key={article.id}>
+	<Article article={article} key={article.id} summary={true} />
           <header>
             <h2>
   <Link to={routes.article({ id: article.id })}>{article.title}</Link>
