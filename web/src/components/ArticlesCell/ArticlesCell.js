@@ -1,4 +1,5 @@
-import { Link, routes } from '@redwoodjs/router'
+import Article from 'src/components/Article'
+
 export const QUERY = gql`
   query ArticlesQuery {
     articles: posts {
@@ -14,25 +15,14 @@ export const Loading = () => <div>Loading...</div>
 
 export const Empty = () => <div>Empty</div>
 
-export const Failure = ({ error }) => (
-  <div style={{ color: 'red' }}>Error: {error.message}</div>
-)
+export const Failure = ({ error }) => <div>Error: {error.message}</div>
 
 export const Success = ({ articles }) => {
   return (
-    <>
+    <div className="space-y-10">
       {articles.map((article) => (
-        <article key={article.id}>
-	<Article article={article} key={article.id} summary={true} />
-          <header>
-            <h2>
-  <Link to={routes.article({ id: article.id })}>{article.title}</Link>
-</h2>
-          </header>
-          <p>{article.body}</p>
-          <div>Posted at: {article.createdAt}</div>
-        </article>
+        <Article article={article} key={article.id} summary={true} />
       ))}
-    </>
+    </div>
   )
 }
