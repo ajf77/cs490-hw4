@@ -14,7 +14,7 @@ export const failure = (args) => {
 }
 
 export const success = (args) => {
-  return Success ? <Success {...standard()} {...args} /> : <></>
+  return Success ? <Success {...standard()} /> : null
 }
 
 export default { title: 'Cells/ArticlesCell' }
