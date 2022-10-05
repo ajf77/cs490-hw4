@@ -17,10 +17,6 @@ export const defaultView = () => {
 }
 
 export const moderatorView = () => {
-  mockCurrentUser({
-    roles: 'moderator',
-  })
-
   return (
     <div className="m-4">
       <Comment
