@@ -6,6 +6,7 @@ const truncate = (text, length) => {
   return text.substring(0, length) + '...'
 }
 
+
 const Article = ({ article, summary = false }) => {
   return (
     <article>
@@ -21,7 +22,7 @@ const Article = ({ article, summary = false }) => {
         <div className="mt-12">
           <CommentForm postId={article.id} />
           <div className="mt-12">
-            <CommentsCell />
+            <CommentsCell postId={article.id} />
           </div>
         </div>
       )}
